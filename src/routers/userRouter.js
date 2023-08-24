@@ -69,7 +69,6 @@ router.post('/user/avatar', auth, upload.single('avatar'), async (req,res)=>{
     const buffer = await sharp(req.file.buffer).resize(500, 500).png().toBuffer()
     req.gotUser.avatar = buffer;
     await req.gotUser.save();
-    console.log(req.gotUser.avatar.binary)
     res.send('file uploaded successfully!')
 },(error, req, res, next)=>{
     res.status(400).send(error.message);
